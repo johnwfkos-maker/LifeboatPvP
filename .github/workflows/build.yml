@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+
+      - name: Compile
+        run: |
+          mkdir out
+          javac src/LifeboatPvP.java -d out
+          jar cf LifeboatPvP.jar -C out .
+
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: plugin
+          path: LifeboatPvP.jar
