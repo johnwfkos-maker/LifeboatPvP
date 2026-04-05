@@ -22,8 +22,8 @@ jobs:
           javac src/LifeboatPvP.java -d out
           jar cf LifeboatPvP.jar -C out .
 
-      - name: Upload
-        uses: actions/upload-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
           name: plugin
           path: LifeboatPvP.jar
